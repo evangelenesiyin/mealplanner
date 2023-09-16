@@ -1,0 +1,42 @@
+body {
+    text-align: center;
+    background-color: rgb(249, 242, 226);
+}
+
+h1 {
+    margin: 50px 0 50px;
+}
+
+.fridge-container {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  max-width: 100%;
+  margin: 50px auto;
+}
+
+.open-fridge {
+  position: absolute;
+  display: block;
+  height: 550px;
+  margin: 55px -203px 0 0;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.closed-fridge {
+  position: absolute;
+  display: block;
+  height: 550px;
+  margin: 50px auto;
+  cursor: pointer;
+  z-index: 0;
+}
+
+.fridge-container:hover .open-fridge {
+  opacity: 1;
+  pointer-events: auto;
+}
+

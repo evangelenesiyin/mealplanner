@@ -1,0 +1,23 @@
+h2 {
+    margin-top: 25px;
+}
+.container {
+    max-width: 100%;
+    width: 1500px;
+}
+.overlay-table {
+  border: 1px solid black;
+  margin: 30px auto; /* Center the table horizontally and add top margin */
+  background-color: white;
+  padding: 100px;
+}
+.ingredients-fridge {
+    background-image: url("./assets/fridge-open.png");
+    float: right;
+    background-size: cover;
+    width: 550px;
+    height: 600px;
+    opacity: 0.3;
+    margin-top: 20px;
+    zoom: 115%;
+}
