@@ -4,7 +4,13 @@ body {
 }
 
 h1 {
-    margin: 50px 0 50px;
+    margin-top: 50px;
+}
+
+h3 {
+    font-size: 20px;
+    margin-top: 20px;
+    margin-bottom: -75px;
 }
 
 .fridge-container {

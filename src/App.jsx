@@ -6,6 +6,7 @@ function LandingPage() {
   return (
     <>
       <h1>What's in your fridge?</h1>
+      <h3>Your handy application to track ingredients and plan meals</h3>
       <div className="fridge-container">
         <Link to={`/fridge`} style={{ display: "flex", justifyContent: "center" }}>
           <img className="closed-fridge" src="./assets/fridge-closed.png" />
