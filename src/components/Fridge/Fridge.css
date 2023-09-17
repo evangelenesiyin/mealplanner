@@ -5,12 +5,6 @@ h2 {
     max-width: 100%;
     width: 1500px;
 }
-.overlay-table {
-  border: 1px solid black;
-  margin: 30px auto; /* Center the table horizontally and add top margin */
-  background-color: white;
-  padding: 100px;
-}
 .ingredients-fridge {
     background-image: url("./assets/fridge-open.png");
     float: right;
@@ -20,4 +14,39 @@ h2 {
     opacity: 0.3;
     margin-top: 20px;
     zoom: 115%;
+}
+.ingredients-table {
+    background-color: white;
+  opacity: 0.8;
+  border-radius: 5px;
+  width: 300px;
+  height: 600px;
+  border: 1px solid white;
+}
+.ingredient-card {
+    border: 1px solid grey;
+    border-radius: 3px;
+    background-color: rgb(249, 242, 226);
+    text-align: left;
+    padding: 10px;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
+}
+.ingredient-name {
+    font-size: 20px;
+}
+.ingredient-type, .purchased-date, .expiry-date {
+    font-size: 13px;
+}
+.icon-container {
+    float: right;
+    margin-top: -30px;
+}
+.icon {
+    height: 15px;
+    width: 25px;
+    padding: 0 5px;
+}
+p {
+    margin: 0;
+    text-align: left;
 }
