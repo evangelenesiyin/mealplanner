@@ -1,9 +1,7 @@
 export default function IngredientCard() {
     return (
         <>
-        <tr>
-            <td>
-                <div className="ingredient-card">
+                <div className="ingredient-card grid-item">
                 <span>
                     <p className="ingredient-name">Chicken</p>
                 </span>
@@ -16,8 +14,6 @@ export default function IngredientCard() {
                     <p className="purchased-date">Purchased on 17/09/2023</p>
                     <p className="expiry-date">Expiring on 30/09/2023</p>
                 </div>
-            </td>
-        </tr>
         </>
     )
 }
