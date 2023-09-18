@@ -1,4 +1,6 @@
-import { useState } from "react"
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 export default function Form ({ ingredientList, setIngredientList, initialIngredient, formData, setFormData, isFormOpen, toggleFormClose }) {
 
@@ -21,6 +23,7 @@ export default function Form ({ ingredientList, setIngredientList, initialIngred
   console.log(ingredientList)
 
     return (
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
         isFormOpen && (
             <div className="modal-overlay">
             <form className="modal-container" onSubmit={handleSubmit}>
@@ -49,11 +52,13 @@ export default function Form ({ ingredientList, setIngredientList, initialIngred
             <option value="Others">Others</option>
           </select>
                 <label>Purchased on</label>
+                <DatePicker />
                 <label>Expires on</label>
+                <DatePicker />
                 <button>Submit</button>
                 <button onClick={toggleFormClose}>Close</button>
             </form>
             </div>
-        )
-        )
+            </LocalizationProvider>
+    )
 }

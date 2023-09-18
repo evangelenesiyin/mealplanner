@@ -22,7 +22,7 @@ export default function Fridge () {
         <>
         <div className="container">
         <h2>Track your ingredients!</h2>
-        <button className="add-ingredient" onClick={toggleFormOpen}>Add new</button>
+        <button className="add-ingredient" onClick={toggleFormOpen}>Click to add new</button>
         <Form isFormOpen={isFormOpen} toggleFormClose={toggleFormClose} ingredientList={ingredientList} setIngredientList={setIngredientList} formData={formData} setFormData={setFormData} initialIngredient={initialIngredient}/>
         <div className="ingredients-list grid">
     {ingredientList.map((ingredient) => (
