@@ -1,8 +1,12 @@
+import { useState } from 'react';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import dayjs from 'dayjs';
 
 export default function Form ({ ingredientList, setIngredientList, initialIngredient, formData, setFormData, isFormOpen, toggleFormClose }) {
+    const [purchaseDate, setPurchaseDate] = useState(null);
+    const [expiryDate, setExpiryDate] = useState(null);
 
     const handleChange = (event) => {
     const { name, value } = event.target;
@@ -12,15 +16,30 @@ export default function Form ({ ingredientList, setIngredientList, initialIngred
     });
   };
 
-  const handleSubmit = (event) => {
+    const handlePurchaseDateChange = (date) => {
+    setPurchaseDate(date);
+    };
+
+    const handleExpiryDateChange = (date) => {
+    setExpiryDate(date);
+    };
+
+    const handleSubmit = (event) => {
     event.preventDefault();
-    if (formData.name.trim() === "" || formData.selected === "") {
+    if (formData.name.trim() === '' || formData.selected === '' || !purchaseDate || !expiryDate) {
       return;
     }
-    setIngredientList([...ingredientList, formData]);
+    const newIngredient = {
+      ...formData,
+      purchaseDate: purchaseDate.toISOString(), // Convert to ISO string
+      expiryDate: expiryDate.toISOString(), // Convert to ISO string
+    };
+    setIngredientList([...ingredientList, newIngredient]);
     setFormData({ ...initialIngredient });
+    setPurchaseDate(null); // Reset date fields
+    setExpiryDate(null);
   };
-  console.log(ingredientList)
+    console.log(ingredientList)
 
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -52,9 +71,17 @@ export default function Form ({ ingredientList, setIngredientList, initialIngred
             <option value="Others">Others</option>
           </select>
                 <label>Purchased on</label>
-                <DatePicker />
+                <DatePicker
+                value={purchaseDate}
+                onChange={handlePurchaseDateChange}
+                format="DD/MM/YYYY"
+            />
                 <label>Expires on</label>
-                <DatePicker />
+                <DatePicker
+                value={expiryDate}
+                onChange={handleExpiryDateChange}
+                format="DD/MM/YYYY"
+            />
                 <button>Submit</button>
                 <button onClick={toggleFormClose}>Close</button>
             </form>
