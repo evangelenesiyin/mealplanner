@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import dayjs from 'dayjs';
+import "./Form.css"
 
 export default function Form ({ ingredientList, setIngredientList, initialIngredient, formData, setFormData, isFormOpen, toggleFormClose }) {
     const [purchaseDate, setPurchaseDate] = useState(null);
@@ -11,10 +11,10 @@ export default function Form ({ ingredientList, setIngredientList, initialIngred
     const handleChange = (event) => {
     const { name, value } = event.target;
     setFormData({
-      ...formData,
-      [name]: value,
+    ...formData,
+    [name]: value,
     });
-  };
+    };
 
     const handlePurchaseDateChange = (date) => {
     setPurchaseDate(date);
@@ -27,65 +27,74 @@ export default function Form ({ ingredientList, setIngredientList, initialIngred
     const handleSubmit = (event) => {
     event.preventDefault();
     if (formData.name.trim() === '' || formData.selected === '' || !purchaseDate || !expiryDate) {
-      return;
+    return;
     }
     const newIngredient = {
-      ...formData,
-      purchaseDate: purchaseDate.toISOString(), // Convert to ISO string
-      expiryDate: expiryDate.toISOString(), // Convert to ISO string
+        ...formData,
+        purchaseDate: purchaseDate.toISOString(),
+        expiryDate: expiryDate.toISOString(),
     };
     setIngredientList([...ingredientList, newIngredient]);
     setFormData({ ...initialIngredient });
-    setPurchaseDate(null); // Reset date fields
+    setPurchaseDate(null);
     setExpiryDate(null);
-  };
-    console.log(ingredientList)
+    };
 
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
-        isFormOpen && (
+        {isFormOpen && (
             <div className="modal-overlay">
             <form className="modal-container" onSubmit={handleSubmit}>
-                <label>Ingredient</label>
-          <input
-            required
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-          />
-          <label>Type</label>
-          <select
-            name="selected"
-            value={formData.selected}
-            onChange={handleChange}
-          >
-            <option disabled value="">
-              Please select
-            </option>
-            <option value="Fruit">Fruit</option>
-            <option value="Vegetable">Vegetable</option>
-            <option value="Meat">Meat</option>
-            <option value="Seafood">Seafood</option>
-            <option value="Dairy">Dairy</option>
-            <option value="Others">Others</option>
-          </select>
-                <label>Purchased on</label>
-                <DatePicker
-                value={purchaseDate}
-                onChange={handlePurchaseDateChange}
-                format="DD/MM/YYYY"
-            />
-                <label>Expires on</label>
-                <DatePicker
-                value={expiryDate}
-                onChange={handleExpiryDateChange}
-                format="DD/MM/YYYY"
-            />
-                <button>Submit</button>
-                <button onClick={toggleFormClose}>Close</button>
+                <div className="form-row">
+                    <label>Ingredient</label>
+                    <input
+                        required
+                        className="form-input"
+                        type="text"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                    />
+                    <label>Type</label>
+                    <select
+                        required
+                        className="form-input"
+                        name="selected"
+                        value={formData.selected}
+                        onChange={handleChange}
+                    >
+                    <option disabled value="">
+                    Please select
+                    </option>
+                    <option value="Fruit">Fruit</option>
+                    <option value="Vegetable">Vegetable</option>
+                    <option value="Meat">Meat</option>
+                    <option value="Seafood">Seafood</option>
+                    <option value="Dairy">Dairy</option>
+                    <option value="Others">Others</option>
+                    </select>
+                </div>
+                <div className="form-row">
+                    <label>Purchased on</label>
+                    <DatePicker
+                    value={purchaseDate}
+                    onChange={handlePurchaseDateChange}
+                    format="DD/MM/YYYY"
+                    />
+                    <label>Expires on</label>
+                    <DatePicker
+                    value={expiryDate}
+                    onChange={handleExpiryDateChange}
+                    format="DD/MM/YYYY"
+                    />
+                </div>
+                <div className='form-buttons'>
+                <button className="form-button">Submit</button>
+                <button className="form-button" onClick={toggleFormClose}>Close</button>
+                </div>
             </form>
             </div>
+        )}
             </LocalizationProvider>
     )
 }
