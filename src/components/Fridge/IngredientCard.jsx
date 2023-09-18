@@ -1,4 +1,6 @@
 import dayjs from 'dayjs';
+import DeleteIngredient from './DeleteIngredient';
+import EditIngredient from './EditIngredient';
 
 export default function IngredientCard({ name, selected, purchaseDate, expiryDate }) {
     const formattedPurchaseDate = dayjs(purchaseDate).format('DD/MM/YYYY');
@@ -12,8 +14,8 @@ export default function IngredientCard({ name, selected, purchaseDate, expiryDat
                 </span>
                 <span className="icon-container">
                     <img className="icon" src="./assets/search.png" alt="Search recipes" />
-                    <img className="icon" src="./assets/edit.png" alt="Edit" />
-                    <img className="icon" src="./assets/delete.png" alt="Delete" />
+                    <EditIngredient />
+                    <DeleteIngredient />
                 </span>
                     <p className="ingredient-type"><em>{selected}</em></p>
                     <p className="purchased-date">Purchased on {formattedPurchaseDate}</p>
