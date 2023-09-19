@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import formatDate from './Date';
 import "./Form.css"
 
 export default function Form ({ ingredientList, setIngredientList, initialIngredient, formData, setFormData, isFormOpen, toggleFormClose }) {
@@ -24,21 +25,50 @@ export default function Form ({ ingredientList, setIngredientList, initialIngred
     setExpiryDate(date);
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
     event.preventDefault();
-    if (formData.name.trim() === '' || formData.selected === '' || !purchaseDate || !expiryDate) {
+    if (formData.name.trim() === '' || formData.type === '' || !purchaseDate || !expiryDate) {
     return;
     }
-    const newIngredient = {
-        ...formData,
-        purchaseDate: purchaseDate.toISOString(),
-        expiryDate: expiryDate.toISOString(),
+    const AIRTABLE_API_KEY = 'patHEpY0OX1f5m692.3c173ace26d4a13ae350424ea67f610df9c6c2aa6486fd9008060dbe191ed051';
+    const BASE_ID = 'appNo7BJCMjuy3aw5';
+    const TABLE_NAME = 'Ingredients%20List';
+
+    const data = {
+      "records": [
+        {
+          "fields": {
+            "name": formData.name,
+            "type": formData.type,
+            "purchaseDate": purchaseDate,
+            "expiryDate": expiryDate,
+          },
+        },
+      ],
     };
+
+    const response = await fetch(`https://api.airtable.com/v0/${BASE_ID}/${TABLE_NAME}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${AIRTABLE_API_KEY}`,
+      },
+      body: JSON.stringify(data)
+    });
+
+    if (response.ok) {
+      const newIngredient = {
+        ...formData,
+        purchaseDate: formatDate(purchaseDate),
+        expiryDate: formatDate(expiryDate),
+    };
+    console.log(newIngredient)
     setIngredientList([...ingredientList, newIngredient]);
     setFormData({ ...initialIngredient });
     setPurchaseDate(null);
     setExpiryDate(null);
     };
+    }
 
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -59,8 +89,8 @@ export default function Form ({ ingredientList, setIngredientList, initialIngred
                     <select
                         required
                         className="form-input"
-                        name="selected"
-                        value={formData.selected}
+                        name="type"
+                        value={formData.type}
                         onChange={handleChange}
                     >
                     <option disabled value="">
@@ -97,4 +127,4 @@ export default function Form ({ ingredientList, setIngredientList, initialIngred
         )}
             </LocalizationProvider>
     )
-}
+        }
