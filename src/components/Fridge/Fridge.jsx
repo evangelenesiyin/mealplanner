@@ -1,13 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Form from "../Form/Form";
 import IngredientCard from "./IngredientCard";
 import "./Fridge.css"
 
 export default function Fridge () {
     const [isFormOpen, setIsFormOpen] = useState(false);
-    const initialIngredient = { name: "", selected: "", purchaseDate: "", expiryDate: ""};
+    const initialIngredient = { name: "", type: "", purchaseDate: "", expiryDate: ""};
     const [ingredientList, setIngredientList] = useState([]);
-
     const [formData, setFormData] = useState({ ...initialIngredient });
 
     const toggleFormOpen = () => {
@@ -17,6 +16,31 @@ export default function Fridge () {
     const toggleFormClose = () => {
         setIsFormOpen(false);
     }
+
+    useEffect(() => {
+    const fetchIngredients = async () => {
+        const AIRTABLE_API_KEY = 'patHEpY0OX1f5m692.3c173ace26d4a13ae350424ea67f610df9c6c2aa6486fd9008060dbe191ed051';
+        const BASE_ID = 'appNo7BJCMjuy3aw5';
+        const TABLE_NAME = 'Ingredients%20List';
+
+      const response = await fetch(`https://api.airtable.com/v0/${BASE_ID}/${TABLE_NAME}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${AIRTABLE_API_KEY}`,
+        },
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        const ingredientsData = data.records.map((record) => ({
+          id: record.id,
+          ...record.fields,
+        }));
+        setIngredientList(ingredientsData);
+      }
+    };
+    fetchIngredients();
+  }, []);
 
     return (
         <>
@@ -29,11 +53,15 @@ export default function Fridge () {
         <div className="ingredients-list grid">
     {ingredientList.map((ingredient) => (
         <IngredientCard
-        key={ingredient.name}
+        key={ingredient.id}
         name={ingredient.name}
-        selected={ingredient.selected}
+        type={ingredient.type}
         purchaseDate={ingredient.purchaseDate}
-        expiryDate={ingredient.expiryDate} />
+        expiryDate={ingredient.expiryDate} 
+        ingredientList={ingredientList}
+        setIngredientList={setIngredientList}
+        formData={formData}
+         />
     ))}
     </div>
     </div>
