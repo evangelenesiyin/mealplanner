@@ -31,7 +31,7 @@ export default function RecipeCard() {
         </div>
         <div className="recipe-name-cat">
         <span className="recipe-name">{recipeData.strMeal}</span>
-        <span className="recipe-category">Category: {recipeData.strCategory}</span>
+        <span className="recipe-category">{recipeData.strCategory}</span>
         <button className="show-more" onClick={() => setShowMore(!showMore)}>
             {showMore ? "Show Less" : "Show More"}
         </button>
