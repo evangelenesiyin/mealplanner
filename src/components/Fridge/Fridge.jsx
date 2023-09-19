@@ -17,7 +17,6 @@ export default function Fridge () {
         setIsFormOpen(false);
     }
 
-    
     const fetchIngredients = async () => {
         const AIRTABLE_API_KEY = 'patHEpY0OX1f5m692.3c173ace26d4a13ae350424ea67f610df9c6c2aa6486fd9008060dbe191ed051';
         const BASE_ID = 'appNo7BJCMjuy3aw5';

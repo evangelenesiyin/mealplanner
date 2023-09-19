@@ -1,6 +1,6 @@
 import { Tooltip } from "@mui/material";
 
-export default function DeleteIngredient({ fetchIngredients, id, callback }) {
+export default function DeleteIngredient({ fetchIngredients, id }) {
 
     const handleRemove = async () => {
         const decision = window.confirm("Are you sure?");
