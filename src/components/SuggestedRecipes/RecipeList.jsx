@@ -3,12 +3,21 @@ import RecipeCard from "./RecipeCard"
 import "./Recipes.css"
 
 export default function SuggestedRecipes() {
-    
+
+
+const handleReloadClick = () => {
+    window.location.reload();
+};
+
     return (
         <>
-        <h2>Suggested recipes</h2>
-        <span className="searchStatement">You searched for <span className="searchName">"Almond milk"</span></span>
+        <h2>What to cook...?</h2>
+        <span className="searchStatement">Need ideas? Generate random recipes by clicking below!</span>
+
+        <button className="randomBtn" onClick={handleReloadClick}>Generate</button>
         <Link to={"/fridge"}><button className="goBackBtn">Back</button></Link>
+        <RecipeCard />
+        <RecipeCard />
         <RecipeCard />
         </>
     )
