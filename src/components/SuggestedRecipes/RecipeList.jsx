@@ -7,7 +7,7 @@ export default function SuggestedRecipes() {
     return (
         <>
         <h2>Suggested recipes</h2>
-        <span className="searchStatement">You have searched for <span className="searchName">"Almond milk"</span></span>
+        <span className="searchStatement">You searched for <span className="searchName">"Almond milk"</span></span>
         <Link to={"/fridge"}><button className="goBackBtn">Go back</button></Link>
         <RecipeCard />
         </>
