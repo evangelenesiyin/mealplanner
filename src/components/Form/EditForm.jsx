@@ -100,7 +100,7 @@ export default function EditForm () {
         </form>
         <div className="editform-buttons">
         <button className="editform-submit">Submit</button>
-        <Link to={`/fridge`}><button className="go-back">Go back</button></Link>
+        <Link to={`/fridge`}><button className="go-back">Back</button></Link>
         </div>
         
         </LocalizationProvider>
