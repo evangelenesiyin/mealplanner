@@ -73,22 +73,27 @@ export default function Form ({ ingredientList, setIngredientList, initialIngred
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
         {isFormOpen && (
-            <div className="modal-overlay">
-            <form className="modal-container" onSubmit={handleSubmit}>
-                <div className="form-row">
+            <div>
+            <form className="form-container" onSubmit={handleSubmit}>
+                <div className="form-ingredient">
+                  <span>
                     <label>Ingredient</label>
+                    </span>
+                    <span>
                     <input
                         required
-                        className="form-input"
                         type="text"
                         name="name"
                         value={formData.name}
                         onChange={handleChange}
                     />
+                    </span>
+                </div>
+
+                <div className="form-type">
                     <label>Type</label>
                     <select
                         required
-                        className="form-input"
                         name="type"
                         value={formData.type}
                         onChange={handleChange}
@@ -104,13 +109,17 @@ export default function Form ({ ingredientList, setIngredientList, initialIngred
                     <option value="Others">Others</option>
                     </select>
                 </div>
-                <div className="form-row">
+
+                <div className="form-purchase">
                     <label>Purchased on</label>
                     <DatePicker
                     value={purchaseDate}
                     onChange={handlePurchaseDateChange}
                     format="DD/MM/YYYY"
                     />
+                </div>
+
+                <div className='form-expiry'>
                     <label>Expires on</label>
                     <DatePicker
                     value={expiryDate}
@@ -118,9 +127,10 @@ export default function Form ({ ingredientList, setIngredientList, initialIngred
                     format="DD/MM/YYYY"
                     />
                 </div>
+                
                 <div className='form-buttons'>
-                <button className="form-button">Submit</button>
-                <button className="form-button" onClick={toggleFormClose}>Close</button>
+                  <button className="form-submit">Submit</button>
+                  <button className="form-close" onClick={toggleFormClose}>Close</button>
                 </div>
             </form>
             </div>

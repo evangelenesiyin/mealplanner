@@ -3,30 +3,73 @@ label {
   margin: 5px;
   padding: 0 5px;
 }
-.modal-container {
+.form-container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  width: 450px;
-  margin: 0 auto;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  max-width: 100%;
+  width: 600px;
+  margin: 30px auto -20px;
+  text-align: left;
 }
-.form-input {
-  width: 180px;
-  height: 55px;
-  border: 1px solid rgb(196, 196, 196);
-  border-radius: 3px;
-  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+.form-ingredient {
+  grid-area: 1 / 1 / 2 / 2;
+  width: 330px;
 }
-.form-input:hover {
-  border: 1px solid black;
+.form-ingredient input {
+    width: 180px;
+    height: 40px;
+    margin: 10px 0 10px 25px;
+    border: 1px solid rgb(196, 196, 196);
+    border-radius: 5px;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
 }
-.form-row {
-  margin: 20px;
+.form-ingredient:hover input {
+    border: 1px solid black;
+}
+.form-type {
+  grid-area: 1 / 2 / 2 / 3;
+}
+.form-type select {
+    width: 180px;
+    height: 40px;
+    margin: 10px 0 10px 42px;
+    border: 1px solid rgb(196, 196, 196);
+    border-radius: 5px;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+}
+.form-type:hover select {
+    border: 1px solid black;
+}
+.form-purchase {
+  grid-area: 2 / 1 / 3 / 2;
+  width: 330px;
+}
+.form-expiry {
+  grid-area: 2 / 2 / 3 / 3;
+  width: 330px;
+}
+.form-purchase label, .form-expiry label {
+    margin-top: 15px;
 }
 .form-buttons {
+  grid-area: 3 / 1 / 4 / 3;
   text-align: center;
+  margin: 10px;
 }
-.form-button {
+.form-submit {
     margin: 10px;
+    border: none;
+    margin-left: -50px;
+    padding: 5px 15px;
+    background-color: rgb(250, 212, 102);
+    border-radius: 5px;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+}
+.form-close {
+  margin: 10px;
     border: none;
     padding: 5px 15px;
     background-color: rgb(250, 212, 102);
