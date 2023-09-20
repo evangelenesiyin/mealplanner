@@ -26,8 +26,8 @@ function App() {
     <Routes>
       <Route path="/" element={<LandingPage />} />
       <Route path="/fridge" element={<Fridge />} />
-      <Route path="/fridge/:id" element={<SuggestedRecipes />} />
       <Route path="/fridge/:id/edit" element={<EditForm />} />
+      <Route path="/recipes" element={<SuggestedRecipes />} />
     </Routes>
   );
 }
