@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Form from "../Form/Form";
 import IngredientCard from "./IngredientCard";
 import "./Fridge.css"
@@ -43,12 +44,16 @@ export default function Fridge () {
     fetchIngredients();
   }, []);
 
+   if (!ingredientList) {
+    return <div><em>Loading...</em></div>;
+  }
+  
     return (
         <>
         <div className="container">
         <h2>Track your ingredients!</h2>
-        <button className="add-ingredient" onClick={toggleFormOpen}>Click to add new</button>
-        
+        <button className="add-ingredient" onClick={toggleFormOpen}>Add New Ingredient</button>
+        <Link to={"/recipes"}><button className="random-recipe">Recipe Randomizer</button></Link>
         <Form isFormOpen={isFormOpen} toggleFormClose={toggleFormClose} ingredientList={ingredientList} setIngredientList={setIngredientList} formData={formData} setFormData={setFormData} initialIngredient={initialIngredient}/>
         
         <div className="ingredients-list grid">
