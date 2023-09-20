@@ -9,10 +9,7 @@ export default function IngredientCard({ fetchIngredients, id, name, type, purch
                 <span>
                     <p className="ingredient-name">{name}</p>
                 </span>
-                <span className="icon-container">
-                    <Tooltip title="Search recipes">
-                        <Link to={`/fridge/${id}`}><img className="icon" src="./assets/search.png" alt="Search recipes" /></Link>
-                    </Tooltip>
+                <span className="icon-container"> 
                     <Tooltip title="Edit">
                         <Link to={`/fridge/${id}/edit`}><img className="icon" src="./assets/edit.png" alt="Edit" /></Link>
                     </Tooltip>
