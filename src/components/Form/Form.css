@@ -69,10 +69,14 @@ label {
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
 }
 .form-close {
-  margin: 10px;
+    margin: 10px;
     border: none;
     padding: 5px 15px;
-    background-color: rgb(250, 212, 102);
+    background-color: rgb(249, 249, 249);
     border-radius: 5px;
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+}
+.form-submit:hover {
+    background-color: rgb(255, 230, 153);
+    color: white;
 }
