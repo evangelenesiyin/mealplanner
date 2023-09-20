@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import DOMPurify from 'dompurify';
 import "./Recipes.css"
 
 export default function RecipeCard() {
@@ -7,8 +8,7 @@ export default function RecipeCard() {
 
     useEffect(() => {
         const fetchRecipe = async () => {
-            // const ingredientLink = "https://www.themealdb.com/api/json/v1/1/filter.php?i=almond%20milk"
-            const recipeLink = "https://www.themealdb.com/api/json/v1/1/search.php?s=Banana%20Pancakes"
+            const recipeLink = "https://www.themealdb.com/api/json/v1/1/random.php"
             const recipeResponse = await fetch(recipeLink);
         
             if (!recipeResponse.ok) {
@@ -22,6 +22,13 @@ export default function RecipeCard() {
 
     if (!recipeData) {
         return <div><em>Loading...</em></div>;
+    }
+
+    // https://blog.logrocket.com/using-dangerouslysetinnerhtml-in-a-react-application/
+    function sanitize(html) {
+    const sanitized = DOMPurify.sanitize(html);
+    const replaceLineBreak = sanitized.split('. ').join('.<br />');
+    return { __html: replaceLineBreak };
     }
 
     return (
@@ -58,7 +65,9 @@ export default function RecipeCard() {
         </div>
         <div className="recipe-instructions">
             <p className="recipe-instructions-header">Instructions:</p>
-            <p className="recipe-instructions-text">{recipeData.strInstructions}</p>
+            <p className="recipe-instructions-text"
+              dangerouslySetInnerHTML={sanitize(recipeData.strInstructions)}
+            />
         </div>
         </>
         )}
