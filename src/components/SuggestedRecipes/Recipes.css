@@ -1,14 +1,26 @@
+.randomBtn {
+    margin-right: 10px;
+    border: none;
+    padding: 5px 15px;
+    background-color: rgb(250, 212, 102);
+    border-radius: 5px;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+}
+.randomBtn:hover {
+    background-color: rgb(255, 230, 153);
+    color: white;
+}  
 .goBackBtn {
     margin: 10px auto;
     border: none;
     padding: 5px 15px;
-    background-color: lightgrey;
+    background-color: rgb(249, 249, 249);
     border-radius: 5px;
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
 }
 .searchStatement {
     display: block;
-    font-size: 18px;
+    font-size: 15px;
     margin: 10px auto;
 }
 .searchName {
@@ -35,6 +47,8 @@
     height: 140px;
     zoom: 150%;
     object-fit: cover;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
 }
 .recipe-name-cat {
     grid-area: 1 / 2 / 2 / 3;
@@ -45,6 +59,7 @@
 .recipe-name-cat span {
     display: block;
     padding-left: 10px;
+    padding-right: 10px;
 }
 .recipe-name {
     font-size: 20px;
@@ -53,19 +68,20 @@
 .recipe-category {
     font-size: 13px;
     font-style: italic;
+    margin-bottom: 20px;
 }
 .show-more {
-    margin: 100px 0 0 10px;
+    margin-left: 10px;
     font-size: 13px;
     border: none;
-    padding: 5px 10px;
-    background-color: rgb(250, 212, 102);
+    padding: 5px 5px;
+    background-color: rgb(255, 230, 153);
     border-radius: 5px;
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
 }
 .recipe-ingredients {
     grid-area: 2 / 1 / 3 / 2;;
-    width: 300px;
+    width: 220px;
 }
 .recipe-ingredients p, .recipe-instructions-header {
     font-weight: bold;
@@ -73,6 +89,7 @@
 }
 .recipe-instructions {
     grid-area: 2 / 2 / 3 / 3;
+    margin-left: -90px;
 }
 .recipe-instructions-text {
     padding: 0 15px 15px;
@@ -80,6 +97,7 @@
 }
 ul {
     text-align: left;
+    width: 220px;
 }
 li {
     font-size: 15px;
