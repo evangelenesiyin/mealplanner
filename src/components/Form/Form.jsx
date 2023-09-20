@@ -62,7 +62,6 @@ export default function Form ({ ingredientList, setIngredientList, initialIngred
         purchaseDate: formatDate(purchaseDate),
         expiryDate: formatDate(expiryDate),
     };
-    console.log(newIngredient)
     setIngredientList([...ingredientList, newIngredient]);
     setFormData({ ...initialIngredient });
     setPurchaseDate(null);
