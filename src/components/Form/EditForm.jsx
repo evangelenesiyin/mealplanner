@@ -88,7 +88,7 @@ export default function EditForm () {
 
     return (
         <>
-        <h2>Update details for {ingredientList.fields?.name}</h2>
+        <div className="editform-statement">You are updating details for <span>"{ingredientList.fields?.name}"</span></div>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
         <form className="editform-container">
             <div className="editform-ingredient">
