@@ -72,7 +72,3 @@ p {
 span {
     display: inline-block;
 }
-.expired {
-    color: red;
-    font-weight: 500;
-}
