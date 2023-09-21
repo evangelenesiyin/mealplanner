@@ -3,7 +3,6 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import formatDate from './Date';
 import "./EditForm.css"
 
 export default function EditForm () {
@@ -86,13 +85,36 @@ export default function EditForm () {
     }
 
     if (purchaseDate) {
-      updatedFields.purchaseDate = purchaseDate;
+      function formatDate(dateString) {
+      const date = new Date(dateString);
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, "0");
+      const day = String(date.getDate()).padStart(2, "0");
+      return `${day}/${month}/${year}`;
+    }
+      updatedFields.purchaseDate = formatDate(purchaseDate);
     }
 
     if (expiryDate) {
-      updatedFields.expiryDate = expiryDate;
+      function formatDate(dateString) {
+      const date = new Date(dateString);
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, "0");
+      const day = String(date.getDate()).padStart(2, "0");
+      return `${day}/${month}/${year}`;
     }
 
+      updatedFields.expiryDate = formatDate(expiryDate);
+    }
+
+    function formatDate(dateString) {
+      const date = new Date(dateString);
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, "0");
+      const day = String(date.getDate()).padStart(2, "0");
+      return `${day}/${month}/${year}`;
+    }
+    
     const newData = {
       "records": [
         {  

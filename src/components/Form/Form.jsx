@@ -62,8 +62,8 @@ export default function Form ({ ingredientList, setIngredientList, initialIngred
           "fields": {
             "name": formData.name,
             "type": formData.type,
-            "purchaseDate": purchaseDate,
-            "expiryDate": expiryDate,
+            "purchaseDate": formatDate(purchaseDate),
+            "expiryDate": formatDate(expiryDate),
           },
         },
       ],
