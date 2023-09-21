@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -8,7 +8,7 @@ import "./EditForm.css"
 
 export default function EditForm () {
     const initialIngredient = { name: "", type: "", purchaseDate: "", expiryDate: ""};
-    const [ingredientList, setIngredientList] = useState([]);
+    const [ingredientList, setIngredientList] = useState({});
     const [formData, setFormData] = useState({ ...initialIngredient });
     const [purchaseDate, setPurchaseDate] = useState("");
     const [expiryDate, setExpiryDate] = useState("");
@@ -27,31 +27,44 @@ export default function EditForm () {
         setExpiryDate(date);
     };
 
+    const AIRTABLE_API_KEY = 'patHEpY0OX1f5m692.3c173ace26d4a13ae350424ea67f610df9c6c2aa6486fd9008060dbe191ed051';
+    const BASE_ID = 'appNo7BJCMjuy3aw5';
+    const TABLE_NAME = 'Ingredients%20List';
+
+    const fetchIngredients = async () => {
+      const response = await fetch(`https://api.airtable.com/v0/${BASE_ID}/${TABLE_NAME}/${id}`, {
+        method: "GET",
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${AIRTABLE_API_KEY}`,
+        },
+      });
+        const data = await response.json();
+        setIngredientList(data);
+    };
+
+    useEffect(() => {
+        fetchIngredients();
+    }, []);
+
     const handleUpdate = async (event) => {
     event.preventDefault();
-
     if (formData.name.trim() === '' || formData.type === '' || !purchaseDate || !expiryDate) {
     return;
     }
-
     const newData = {
       "records": [
         {  
             "id": id,
             "fields": {
-            "name": formData.name,
-            "type": formData.type,
-            "purchaseDate": purchaseDate,
-            "expiryDate": expiryDate,
-          },
+                "name": formData.name,
+                "type": formData.type,
+                "purchaseDate": purchaseDate,
+                "expiryDate": expiryDate,
+            },
         },
       ],
     };
-
-    const AIRTABLE_API_KEY = 'patHEpY0OX1f5m692.3c173ace26d4a13ae350424ea67f610df9c6c2aa6486fd9008060dbe191ed051';
-    const BASE_ID = 'appNo7BJCMjuy3aw5';
-    const TABLE_NAME = 'Ingredients%20List';
-
     const response = await fetch(`https://api.airtable.com/v0/${BASE_ID}/${TABLE_NAME}`, {
       method: "PATCH",
       headers: {
@@ -75,9 +88,8 @@ export default function EditForm () {
 
     return (
         <>
-        <h2>Update details for {formData.name}</h2>
+        <h2>Update details for {ingredientList.fields?.name}</h2>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
-        
         <form className="editform-container">
             <div className="editform-ingredient">
             <span>
