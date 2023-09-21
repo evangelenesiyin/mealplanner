@@ -2,12 +2,14 @@ import { useState } from 'react';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { Tooltip } from "@mui/material";
 import formatDate from './Date';
 import "./Form.css"
 
 export default function Form ({ ingredientList, setIngredientList, initialIngredient, formData, setFormData, isFormOpen, toggleFormClose }) {
     const [purchaseDate, setPurchaseDate] = useState(null);
     const [expiryDate, setExpiryDate] = useState(null);
+    const [error, setError] = useState(false);
 
     const handleChange = (event) => {
     const { name, value } = event.target;
@@ -15,19 +17,39 @@ export default function Form ({ ingredientList, setIngredientList, initialIngred
     ...formData,
     [name]: value,
     });
+    setError(false);
     };
 
     const handlePurchaseDateChange = (date) => {
+    if (expiryDate && date > expiryDate) {
+      setError(true);
+      alert("Invalid date. Purchase date is later than expiry date.")
+      setPurchaseDate("")
+    } else {
     setPurchaseDate(date);
+    setError(false);
     };
+  }
 
     const handleExpiryDateChange = (date) => {
+    if (purchaseDate && date < purchaseDate) {
+      setError(true);
+      alert("Invalid date. Expiry date is earlier than purchase date.")
+      setExpiryDate("");
+    } else {
     setExpiryDate(date);
+    setError(false);
     };
+  }
+
+  const errorStyles = error ? { borderColor: 'red' } : {};
+  const errorButtonStyles = error
+    ? { backgroundColor: 'lightgrey', color: 'darkgrey' }
+    : {};
 
     const handleSubmit = async (event) => {
     event.preventDefault();
-    if (formData.name.trim() === '' || formData.type === '' || !purchaseDate || !expiryDate) {
+    if (formData.name.trim() === '' || formData.type === '' || !purchaseDate || !expiryDate || error ) {
     return;
     }
     const AIRTABLE_API_KEY = 'patHEpY0OX1f5m692.3c173ace26d4a13ae350424ea67f610df9c6c2aa6486fd9008060dbe191ed051';
@@ -85,6 +107,7 @@ export default function Form ({ ingredientList, setIngredientList, initialIngred
                         name="name"
                         value={formData.name}
                         onChange={handleChange}
+                        style={errorStyles}
                     />
                     </span>
                 </div>
@@ -96,6 +119,7 @@ export default function Form ({ ingredientList, setIngredientList, initialIngred
                         name="type"
                         value={formData.type}
                         onChange={handleChange}
+                        style={errorStyles}
                     >
                     <option disabled value="">
                     Please select
@@ -110,7 +134,7 @@ export default function Form ({ ingredientList, setIngredientList, initialIngred
                 </div>
 
                 <div className="form-purchase">
-                    <label>Purchased on</label>
+                    <label>Purchase date</label>
                     <DatePicker
                     value={purchaseDate}
                     onChange={handlePurchaseDateChange}
@@ -119,7 +143,11 @@ export default function Form ({ ingredientList, setIngredientList, initialIngred
                 </div>
 
                 <div className='form-expiry'>
-                    <label>Expires on</label>
+                    <label>Expiry date
+                      <Tooltip title="Or the date to re-stock if you wish :D">
+                      <img className="info-icon" src="./assets/info.png" />
+                      </Tooltip>
+                      </label>
                     <DatePicker
                     value={expiryDate}
                     onChange={handleExpiryDateChange}
@@ -128,7 +156,7 @@ export default function Form ({ ingredientList, setIngredientList, initialIngred
                 </div>
                 
                 <div className='form-buttons'>
-                  <button className="form-submit">Submit</button>
+                  <button className="form-submit" style={errorButtonStyles} disabled={error}>Submit</button>
                   <button className="form-close" onClick={toggleFormClose}>Close</button>
                 </div>
             </form>
