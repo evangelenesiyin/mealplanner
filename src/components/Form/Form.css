@@ -35,7 +35,7 @@ label {
 .form-type select {
     width: 230px;
     height: 40px;
-    margin: 10px 0 10px 42px;
+    margin: 10px 0 10px 57px;
     border: 1px solid rgb(196, 196, 196);
     border-radius: 5px;
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
@@ -79,4 +79,10 @@ label {
 .form-submit:hover {
     background-color: rgb(255, 230, 153);
     color: white;
+}
+.info-icon {
+  margin-top: -20px;
+  margin-left: 3px;
+  width: 12px;
+  height: 12px;
 }
