@@ -34,6 +34,7 @@ What's in your fridge? is deployed on Vercel, click here to view the application
 - Material UI
 - Airtable
 - TheMealDB (API)
+- Git/GitHub
 
 ### Project Planning and Development
 
