@@ -2,8 +2,7 @@ import { Link } from "react-router-dom"
 import RecipeCard from "./RecipeCard"
 import "./Recipes.css"
 
-export default function SuggestedRecipes() {
-
+export default function RecipeList() {
 
 const handleReloadClick = () => {
     window.location.reload();
