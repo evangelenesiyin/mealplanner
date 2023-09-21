@@ -1,8 +1,8 @@
 ## Meal Planner - What's in your fridge?
 
-Your easy-to-use, handy application to track ingredients (or food in general) in your fridge. Don't know what to cook? Browse through suggested recipes and get inspired to prepare your next meal.<br />
+Your easy-to-use, handy application to track ingredients (or food in general) in your fridge. Don't know what to cook? Browse through suggested recipes and get inspired to prepare your next meal. Best viewed on desktop.<br />
 
-Why this application? Because I simply love food. As a busy working adult juggling many responsibilities, I do get frustrated when my fridge is cluttered - certain foods expire and are forgotten (sometimes).
+Why this application? I simply love food. As a busy working adult juggling many responsibilities, I do get frustrated when my fridge is cluttered - certain foods expire and are forgotten (sometimes).
 
 ## Project Brief
 
@@ -23,6 +23,8 @@ Why this application? Because I simply love food. As a busy working adult juggli
 
 ## Getting Started
 
+What's in your fridge? is deployed on Vercel, click here to view the application - https://mealplanner-nu.vercel.app/
+
 ### Technologies Used
 
 - HTML
@@ -36,6 +38,17 @@ Why this application? Because I simply love food. As a busy working adult juggli
 ### Project Planning
 
 Time given to complete this project is about 1 week.<br />
+
+I outlined the steps I took to build this project below:
+1. Using a Kanban board, I planned out the Ice Box items that I wanted to implement in my project. I placed myself in the shoes of potential users of my application, and as an application user myself, I crafted the layout, design, features, and React components. View my Trello board here - https://trello.com/b/mH0NGpRU/meal-planner
+2. Build the skeleton and components of the application using HTML, CSS (and Bootstrap), and React. Components include:
+- Fridge (Main)
+- Form to create ingredient
+- Ingredient Card
+- Form to update ingredient details
+- Delete Button to remove ingredient
+- Recipe List
+- Recipe Card
 
 ## Screenshots
 
@@ -53,3 +66,8 @@ Click on the pencil and cross icons on each ingredient card to edit and delete t
 
 ### Recipe Randomizer
 ![image](https://github.com/evangelenesiyin/mealplanner/assets/108106809/5b591b7b-deeb-4b89-8334-0b90fe59c65b)
+
+## Next Steps
+
+- Add a filter and sort feature to categorise the listed ingredients e.g. filter by type, sort by ingredients which are expiring soon
+- Mobile optimisation
