@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
@@ -12,7 +12,9 @@ export default function EditForm () {
     const [formData, setFormData] = useState({ ...initialIngredient });
     const [purchaseDate, setPurchaseDate] = useState("");
     const [expiryDate, setExpiryDate] = useState("");
+    const [error, setError] = useState(false);
     const { id } = useParams();
+    const navigate = useNavigate();
 
     const handleChange = (event) => {
     const { name, value } = event.target;
@@ -20,12 +22,31 @@ export default function EditForm () {
     };
 
     const handlePurchaseDateChange = (date) => {
-        setPurchaseDate(date);
+    if (expiryDate && date > expiryDate) {
+      setError(true);
+      alert("Invalid date. Purchase date is later than expiry date.")
+      setPurchaseDate("")
+    } else {
+    setPurchaseDate(date);
+    setError(false);
     };
+  }
 
     const handleExpiryDateChange = (date) => {
-        setExpiryDate(date);
+      if (purchaseDate && date < purchaseDate) {
+      setError(true);
+      alert("Invalid date. Expiry date is earlier than purchase date.")
+      setExpiryDate("");
+    } else {
+    setExpiryDate(date);
+    setError(false);
     };
+  }
+
+  const errorStyles = error ? { borderColor: 'red' } : {};
+  const errorButtonStyles = error
+    ? { backgroundColor: 'lightgrey', color: 'darkgrey' }
+    : {};
 
     const AIRTABLE_API_KEY = 'patHEpY0OX1f5m692.3c173ace26d4a13ae350424ea67f610df9c6c2aa6486fd9008060dbe191ed051';
     const BASE_ID = 'appNo7BJCMjuy3aw5';
@@ -49,18 +70,35 @@ export default function EditForm () {
 
     const handleUpdate = async (event) => {
     event.preventDefault();
-    if (formData.name.trim() === '' || formData.type === '' || !purchaseDate || !expiryDate) {
+    if (formData.name.trim() === '' && formData.type === '' && !purchaseDate && !expiryDate) {
+      alert("Please fill in at least one field.")
     return;
     }
+
+    const updatedFields = {};
+
+    if (formData.name.trim() !== '') {
+    updatedFields.name = formData.name;
+    }
+
+    if (formData.type !== '') {
+      updatedFields.type = formData.type;
+    }
+
+    if (purchaseDate) {
+      updatedFields.purchaseDate = purchaseDate;
+    }
+
+    if (expiryDate) {
+      updatedFields.expiryDate = expiryDate;
+    }
+
     const newData = {
       "records": [
         {  
             "id": id,
             "fields": {
-                "name": formData.name,
-                "type": formData.type,
-                "purchaseDate": purchaseDate,
-                "expiryDate": expiryDate,
+                ...updatedFields,
             },
         },
       ],
@@ -79,6 +117,7 @@ export default function EditForm () {
         purchaseDate: formatDate(purchaseDate),
         expiryDate: formatDate(expiryDate),
     };
+    navigate("/fridge");
     setIngredientList([...ingredientList, newIngredient]);
     setFormData({ ...initialIngredient });
     setPurchaseDate(null);
@@ -101,6 +140,7 @@ export default function EditForm () {
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
+                style={errorStyles}
             />
             </span>
             </div>
@@ -111,6 +151,7 @@ export default function EditForm () {
                 name="type"
                 value={formData.type}
                 onChange={handleChange}
+                style={errorStyles}
             >
                 <option disabled value="">
                         Please select
@@ -125,7 +166,7 @@ export default function EditForm () {
             </div>
 
             <div className="editform-purchase">
-            <label>Purchased on</label>
+            <label>Purchase date</label>
             <DatePicker 
                 value={purchaseDate}
                 onChange={handlePurchaseDateChange}
@@ -134,7 +175,7 @@ export default function EditForm () {
             </div>
 
             <div className="editform-expiry">
-            <label>Expires on</label>
+            <label>Expiry date</label>
             <DatePicker 
                 value={expiryDate}
                 onChange={handleExpiryDateChange}
@@ -143,7 +184,7 @@ export default function EditForm () {
             </div>
         
         <div className="editform-buttons">
-        <button className="editform-submit" onClick={handleUpdate}>Submit</button>
+        <button className="editform-submit" onClick={handleUpdate} style={errorButtonStyles} disabled={error}>Submit</button>
         <Link to={`/fridge`}><button className="go-back">Back</button></Link>
         </div>
         </form>
