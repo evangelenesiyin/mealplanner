@@ -24,7 +24,7 @@
 .editform-ingredient input {
     width: 230px;
     height: 40px;
-    margin: 10px 0 10px 25px;
+    margin: 10px 0 10px 30px;
     border: 1px solid rgb(196, 196, 196);
     border-radius: 5px;
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
@@ -38,7 +38,7 @@
 .editform-type select {
     width: 230px;
     height: 40px;
-    margin: 10px 0 10px 42px;
+    margin: 10px 0 10px 49px;
     border: 1px solid rgb(196, 196, 196);
     border-radius: 5px;
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
