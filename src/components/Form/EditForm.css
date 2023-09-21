@@ -1,3 +1,11 @@
+.editform-statement {
+    margin-top: 30px;
+    font-size: 20px;
+    font-weight: 400;
+}
+.editform-statement span {
+    font-weight: bold;
+}
 .editform-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -6,7 +14,7 @@
     grid-row-gap: 0px;
     max-width: 100%;
     width: 700px;
-    margin: 50px auto;
+    margin: 30px auto;
     text-align: left;
 }
 .editform-ingredient {
@@ -50,7 +58,8 @@
     margin-top: 15px;
 }
 .editform-buttons {
-    margin: 10px auto;
+    margin: 30px auto;
+    margin-right: -250px;
 }
 .editform-submit {
     border: none;
@@ -60,10 +69,14 @@
     border-radius: 5px;
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
 }
+.editform-submit:hover {
+    background-color: rgb(255, 230, 153);
+    color: white;
+}
 .go-back {
     border: none;
     padding: 5px 15px;
-    background-color: lightgrey;
+    background-color: rgb(249, 249, 249);
     border-radius: 5px;
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
 }
