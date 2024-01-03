@@ -21,7 +21,21 @@ export default function RecipeCard() {
     }, [])
 
     if (!recipeData) {
-        return <div><em>Loading...</em></div>;
+        return (
+        <div class="parent-grid" aria-hidden="true">
+  <img src="" class="placeholder image" alt="" />
+  <div class="card-body">
+    <p class="card-text placeholder-glow ms-4">
+      <span class="placeholder col-6"></span>
+    </p>
+    <p class="card-text placeholder-glow ms-4">
+      <span class="placeholder col-7"></span>
+      <span class="placeholder col-4"></span>
+      <span class="placeholder col-4"></span>
+    </p>
+  </div>
+</div>
+        );
     }
 
     // https://blog.logrocket.com/using-dangerouslysetinnerhtml-in-a-react-application/

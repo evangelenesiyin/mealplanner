@@ -50,6 +50,16 @@
     border-top-left-radius: 3px;
     border-bottom-left-radius: 3px;
 }
+.placeholder.image {
+    height: 140px;
+    color: #CCCCCC;
+}
+.placeholder {
+    color: #CCCCCC;
+}
+.card-body {
+    margin-top: 10px;
+}
 .recipe-name-cat {
     grid-area: 1 / 2 / 2 / 3;
     text-align: left;
