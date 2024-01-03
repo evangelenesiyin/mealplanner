@@ -9,6 +9,7 @@ export default function Fridge () {
     const initialIngredient = { name: "", type: "", purchaseDate: "", expiryDate: ""};
     const [ingredientList, setIngredientList] = useState([]);
     const [formData, setFormData] = useState({ ...initialIngredient });
+    const [loading, setLoading] = useState(true);
 
     const toggleFormOpen = () => {
         setIsFormOpen(true);
@@ -37,6 +38,7 @@ export default function Fridge () {
           ...record.fields,
         }));
         setIngredientList(ingredientsData);
+        setLoading(false);
       }
     };
 
@@ -44,10 +46,6 @@ export default function Fridge () {
     fetchIngredients();
   }, []);
 
-   if (!ingredientList) {
-    return <div><em>Loading...</em></div>;
-  }
-  
     return (
         <>
         <div className="container">
@@ -57,7 +55,25 @@ export default function Fridge () {
         <Form isFormOpen={isFormOpen} toggleFormClose={toggleFormClose} ingredientList={ingredientList} setIngredientList={setIngredientList} formData={formData} setFormData={setFormData} initialIngredient={initialIngredient}/>
         
         <div className="ingredients-list grid">
-    {ingredientList.map((ingredient) => (
+          {loading ? (
+                    Array.from({ length: 3 }).map((_, index) => (
+                        <div className="loading-skeleton" key={index}>
+                            <div className="skeleton" aria-hidden="true">
+                            <div className="card-body">
+                              <p className="card-text placeholder-glow ms-1 -mt-2">
+                                <span className="placeholder col-6"></span>
+                              </p>
+                              <p className="card-text placeholder-glow ms-1">
+                                <span className="placeholder col-7"></span>
+                                <span className="placeholder col-4"></span>
+                                <span className="placeholder col-4"></span>
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                    ))
+                ) : (
+    ingredientList.map((ingredient) => (
         <IngredientCard
         key={ingredient.id}
         name={ingredient.name}
@@ -67,7 +83,8 @@ export default function Fridge () {
         id={ingredient.id}
         fetchIngredients={fetchIngredients}
          />
-    ))}
+    ))
+                )}
     </div>
     </div>
     </>

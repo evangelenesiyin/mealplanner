@@ -22,16 +22,16 @@ export default function RecipeCard() {
 
     if (!recipeData) {
         return (
-        <div class="parent-grid" aria-hidden="true">
-  <img src="" class="placeholder image" alt="" />
-  <div class="card-body">
-    <p class="card-text placeholder-glow ms-4">
-      <span class="placeholder col-6"></span>
+        <div className="parent-grid" aria-hidden="true">
+  <img src="" className="placeholder image" alt="" />
+  <div className="card-body">
+    <p className="card-text placeholder-glow ms-4">
+      <span className="placeholder col-6"></span>
     </p>
-    <p class="card-text placeholder-glow ms-4">
-      <span class="placeholder col-7"></span>
-      <span class="placeholder col-4"></span>
-      <span class="placeholder col-4"></span>
+    <p className="card-text placeholder-glow ms-4">
+      <span className="placeholder col-7"></span>
+      <span className="placeholder col-4"></span>
+      <span className="placeholder col-4"></span>
     </p>
   </div>
 </div>
