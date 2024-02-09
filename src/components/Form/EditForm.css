@@ -1,82 +1,73 @@
-.editform-statement {
-    margin-top: 30px;
-    font-size: 20px;
-    font-weight: 400;
-}
-.editform-statement span {
-    font-weight: bold;
-}
 .editform-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-rows: repeat(1, 1fr);
     grid-column-gap: 0px;
     grid-row-gap: 0px;
     max-width: 100%;
-    width: 700px;
-    margin: 30px auto;
+    width: 550px;
     text-align: left;
+    font-size: 13px;
 }
-.editform-ingredient {
-    grid-area: 1 / 1 / 2 / 3;
-    width: 400px;
+
+.editform-ingredient, .editform-type, .editform-purchase, .editform-expiry {
+    margin-right: 10px;
+    margin-bottom: 15px;
 }
+
+.editform-ingredient label {
+    grid-area: 1 / 1 / 2 / 2;
+    width: 100px;
+}
+
 .editform-ingredient input {
-    width: 230px;
+    grid-area: 1 / 2 / 2 / 3;
+    width: 150px;
     height: 40px;
-    margin: 10px 0 10px 30px;
     border: 1px solid rgb(196, 196, 196);
     border-radius: 5px;
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
 }
+
 .editform-ingredient:hover input {
     border: 1px solid black;
 }
-.editform-type {
-    grid-area: 1 / 3 / 2 / 5;
+
+.editform-type label {
+    grid-area: 1 / 3 / 2 / 4;
+    width: 100px;
 }
+
 .editform-type select {
-    width: 230px;
+    grid-area: 1 / 4 / 2 / 5;
+    width: 150px;
     height: 40px;
-    margin: 10px 0 10px 49px;
     border: 1px solid rgb(196, 196, 196);
     border-radius: 5px;
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
 }
+
 .editform-type:hover select {
     border: 1px solid black;
 }
-.editform-purchase {
-    grid-area: 2 / 1 / 3 / 3;
-    width: 400px;
+
+.editform-purchaselabel {
+    grid-area: 2 / 1 / 3 / 2;
+    width: 120px;
 }
-.editform-expiry {
-    grid-area: 2 / 3 / 3 / 5;
-    width: 400px;
+
+.editform-purchasedate {
+    grid-area: 2 / 2 / 3 / 3;
+    width: 150px;
+    height: 30px;
 }
-.editform-purchase label, .editform-expiry label {
-    margin-top: 15px;
+
+.editform-expiry label {
+    grid-area: 2 / 3 / 3 / 4;
 }
-.editform-buttons {
-    margin: 30px auto;
-    margin-right: -250px;
-}
-.editform-submit {
-    border: none;
-    padding: 5px 20px;
-    margin-right: 30px;
-    background-color: rgb(250, 212, 102);
-    border-radius: 5px;
-    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
-}
-.editform-submit:hover {
-    background-color: rgb(255, 230, 153);
-    color: white;
-}
-.go-back {
-    border: none;
-    padding: 5px 15px;
-    background-color: rgb(249, 249, 249);
-    border-radius: 5px;
-    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+
+.editform-expirydate {
+    grid-area: 2 / 4 / 3 / 5;
+    width: 150px;
+    height: 30px;
 }

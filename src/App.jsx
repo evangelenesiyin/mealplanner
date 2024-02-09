@@ -1,7 +1,6 @@
 import { Link, Route, Routes } from "react-router-dom";
 import Fridge from "./components/Fridge/Fridge";
 import RecipeList from "./components/SuggestedRecipes/RecipeList";
-import EditForm from "./components/Form/EditForm";
 import "./App.css"
 
 function LandingPage() {
@@ -26,7 +25,6 @@ function App() {
     <Routes>
       <Route path="/" element={<LandingPage />} />
       <Route path="/fridge" element={<Fridge />} />
-      <Route path="/fridge/:id/edit" element={<EditForm />} />
       <Route path="/recipes" element={<RecipeList />} />
     </Routes>
   );

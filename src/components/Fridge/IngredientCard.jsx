@@ -1,6 +1,5 @@
-import { Link } from 'react-router-dom';
-import { Tooltip } from "@mui/material";
 import DeleteIngredient from './DeleteIngredient';
+import EditForm from '../Form/EditForm';
 
 export default function IngredientCard({ fetchIngredients, id, name, type, purchaseDate, expiryDate }) {
     
@@ -9,10 +8,11 @@ export default function IngredientCard({ fetchIngredients, id, name, type, purch
                 <span>
                     <p className="ingredient-name">{name}</p>
                 </span>
-                <span className="icon-container"> 
-                    <Tooltip title="Edit">
-                        <Link to={`/fridge/${id}/edit`}><img className="icon" src="./assets/edit.png" alt="Edit" /></Link>
-                    </Tooltip>
+                <span className="icon-container">
+                    <EditForm
+                    id={id}
+                    fetchIngredients={fetchIngredients}
+                    /> 
                     <DeleteIngredient
                     id={id}
                     fetchIngredients={fetchIngredients}

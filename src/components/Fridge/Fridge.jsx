@@ -81,6 +81,7 @@ export default function Fridge () {
         purchaseDate={ingredient.purchaseDate}
         expiryDate={ingredient.expiryDate} 
         id={ingredient.id}
+        ingredientList={ingredientList}
         fetchIngredients={fetchIngredients}
          />
     ))
