@@ -42,6 +42,10 @@ Debugging was a challenge especially when dates, combined with Airtable, were in
 - Replacing Airtable with a SQL database. I pick SQL as it is suitable for structured data that doesn't change much overtime in terms of scalability, and is most suitable for a small project like this. As a start, I pick PostgreSQL to learn more about SQL. With the implementation of database, I plan to use Express and Node.js as part of my backend infrastructure.
 - Sign up and login feature
 
+## 😵 Mistakes/Learnings
+
+I learnt more about Git and how repositories work when I made a mistake by executing `git init` and initialised the repo with my `node_modules` files before creating the `.gitignore` file (and creating it afterwards does not solve the issue). It was a very rookie mistake and that there are huge consequences when including `node_modules` files in Git. For major collaborative projects in the future, this will cause slow pulls and pushes and can be highly problematic when merging.
+
 ## 📸 Demo Images
 
 **Main Page**
