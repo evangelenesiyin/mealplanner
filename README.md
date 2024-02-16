@@ -44,13 +44,15 @@ Debugging was a challenge especially when dates, combined with Airtable, were in
 
 ## 📸 Demo Images
 
-### Main Page
-(The <em>portal</em> is through the fridge)<br /><br />
-![image](https://github.com/evangelenesiyin/mealplanner/assets/108106809/0b5c7924-f9fc-47f9-9295-da368587c9c7)
+**Main Page**
 
-### Ingredients Tracker
+(The *portal* is through the fridge)
+![mealplanner](https://github.com/evangelenesiyin/mealplanner/assets/108106809/420c3060-ec94-4d21-b034-56c084769d52)
+
+**Ingredients Tracker**
 
 ![image](https://github.com/evangelenesiyin/mealplanner/assets/108106809/6db6fc7f-09f8-4a19-a514-a79cb0cb3adf)
 
-### Recipe Randomizer
+**Recipe Randomizer**
+
 ![image](https://github.com/evangelenesiyin/mealplanner/assets/108106809/5b591b7b-deeb-4b89-8334-0b90fe59c65b)
